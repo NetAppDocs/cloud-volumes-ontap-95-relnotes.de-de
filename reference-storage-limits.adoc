@@ -1,0 +1,499 @@
+---
+sidebar: sidebar 
+permalink: reference-storage-limits.html 
+keywords: limits, maximum, storage, aggregates, disks, volumes, capacity, luns, size, storage virtual machine, SVM, page blobs, ebs, managed disks 
+summary: Cloud Volumes ONTAP verfügt über Einschränkungen bei der Storage-Konfiguration, um einen zuverlässigen Betrieb zu gewährleisten. Konfigurieren Sie das System nicht mit den Maximalwerten, um eine optimale Performance zu erzielen. 
+---
+= Storage-Beschränkungen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Volumes ONTAP verfügt über Einschränkungen bei der Storage-Konfiguration, um einen zuverlässigen Betrieb zu gewährleisten. Konfigurieren Sie das System nicht mit den Maximalwerten, um eine optimale Performance zu erzielen.
+
+
+
+== Maximale Systemkapazität nach Lizenz
+
+Die maximale Systemkapazität eines Cloud Volumes ONTAP-Systems wird durch seine Lizenz bestimmt. Die maximale Systemkapazität umfasst festplattenbasierten Storage sowie Objekt-Storage für Daten-Tiering. NetApp unterstützt das Übertreffen dieses Limits nicht.
+
+Bei einigen Konfigurationen verhindern Festplatten-Limits, dass Sie durch die Verwendung von Festplatten allein das Kapazitätslimit von 368 tib erreichen. In diesen Fällen können Sie das Kapazitätslimit von 368 tib erreichen https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/concept-data-tiering.html["tiering inaktiver Daten in Objektspeicher"^]. Weitere Details finden Sie unter Kapazitäts- und Festplattengrenzwerte unten.
+
+[cols="30,70"]
+|===
+| Lizenz | Maximale Systemkapazität (Festplatten + Objekt-Storage) 
+
+
+| Entdecken | 2 tib (Daten-Tiering wird nicht mit Explore unterstützt) 
+
+
+| Standard | 10 tib 
+
+
+| Premium | 368 tib 
+
+
+| BYOL | 368 tib pro Lizenz 
+|===
+Das Kapazitätslimit liegt für das gesamte HA-Paar. Er erfolgt nicht pro Node. Wenn Sie beispielsweise die Premium-Lizenz verwenden, können Sie bis zu 368 tib Kapazität zwischen beiden Nodes haben.
+
+Nein, das tut es nicht. Die Daten in einem AWS HA-Paar werden zwischen den Nodes synchron gespiegelt, sodass bei einem Ausfall die Daten verfügbar sind. Wenn Sie beispielsweise eine 8-tib-Festplatte auf Node A erwerben, weist Cloud Manager auf Node B auch eine 8-tib-Festplatte zu, die für gespiegelte Daten verwendet wird. Während 16 tib Kapazität bereitgestellt wurde, zählt nur 8 tib auf dem Lizenzlimit.
+
+
+
+== Kapazitätsgrenzen und Festplattenbeschränkungen durch AWS EC2 Instanz
+
+Cloud Volumes ONTAP nutzt EBS Volumes als Festplatten. Die unten aufgeführten Festplattengrenzwerte gelten für Festplatten, die Benutzerdaten enthalten. Die Grenzen beinhalten nicht die Boot-Festplatte und Root-Festplatte.
+
+Die maximale EBS-Festplattengröße beträgt 16 tib. Die Anzahl der unterstützten Festplatten variiert je nach Instanztyp.
+
+Die nachfolgende Tabelle zeigt die maximale Kapazität je Instanztyp nur mit EBS-Festplatten sowie mit Festplatten und Tiering in Objekt-Storage.
+
+
+
+=== Single Node mit Premium-Lizenz
+
+[cols="16,20,30,32"]
+|===
+| Instanztyp | Max. Festplatten pro Node | Maximale Systemkapazität mit Festplatten allein | Maximale Systemkapazität mit Festplatten und Daten-Tiering 
+
+
+| C4.4xlarge | 34 | 368 tib | 368 tib 
+
+
+| C4.8xlarge | 34 | 368 tib | 368 tib 
+
+
+| C5d.4xlarge | 23 | 368 tib | 368 tib 
+
+
+| C5d.9xlarge | 23 | 368 tib | 368 tib 
+
+
+| M4.4xlarge | 34 | 368 tib | 368 tib 
+
+
+| M5.4xlarge | 23 | 368 tib | 368 tib 
+
+
+| R4.2xlarge | 34 | 368 tib | 368 tib 
+
+
+| R5.2xlarge | 23 | 368 tib | 368 tib 
+
+
+| R5d.2xlarge | 23 | 368 tib | 368 tib 
+|===
+
+
+=== Einzelner Node mit einer oder mehreren BYOL-Lizenzen
+
+[cols="10,18,18,18,18,18"]
+|===
+| Instanztyp | Max. Festplatten pro Node 2+| Maximale Systemkapazität mit einer Lizenz 2+| Maximale Systemkapazität mit mehreren Lizenzen 
+
+
+2+|  | *Festplatten allein* | *Festplatten + Daten-Tiering* | *Festplatten allein* | *Festplatten + Daten-Tiering* 
+
+
+| C4.4xlarge | 34 | 368 tib | 368 tib | 544 tib | 368 tib x jede Lizenz 
+
+
+| C4.8xlarge | 34 | 368 tib | 368 tib | 544 tib | 368 tib x jede Lizenz 
+
+
+| C5d.4xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+
+
+| C5d.9xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+
+
+| m4.xlarge | 34 | 368 tib | 368 tib | 544 tib | 368 tib x jede Lizenz 
+
+
+| M4.2xlarge | 34 | 368 tib | 368 tib | 544 tib | 368 tib x jede Lizenz 
+
+
+| M4.4xlarge | 34 | 368 tib | 368 tib | 544 tib | 368 tib x jede Lizenz 
+
+
+| m5.xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+
+
+| M5.2xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+
+
+| M5.4xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+
+
+| r4.xlarge | 34 | 368 tib | 368 tib | 544 tib | 368 tib x jede Lizenz 
+
+
+| R4.2xlarge | 34 | 368 tib | 368 tib | 544 tib | 368 tib x jede Lizenz 
+
+
+| r5.xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+
+
+| R5.2xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+
+
+| R5d.2xlarge | 23 | 368 tib | 368 tib | 368 tib | 368 tib x jede Lizenz 
+|===
+
+
+=== HA-Paare mit einer Premium-Lizenz
+
+[cols="16,20,30,32"]
+|===
+| Instanztyp | Max. Festplatten pro Node | Maximale Systemkapazität mit Festplatten allein | Maximale Systemkapazität mit Festplatten und Daten-Tiering 
+
+
+| C4.4xlarge | 31 | 368 tib | 368 tib 
+
+
+| C4.8xlarge | 31 | 368 tib | 368 tib 
+
+
+| C5d.4xlarge | 20 | 320 tib | 368 tib 
+
+
+| C5d.9xlarge | 20 | 320 tib | 368 tib 
+
+
+| M4.4xlarge | 31 | 368 tib | 368 tib 
+
+
+| M5.4xlarge | 20 | 320 tib | 368 tib 
+
+
+| R4.2xlarge | 31 | 368 tib | 368 tib 
+
+
+| R5.2xlarge | 20 | 320 tib | 368 tib 
+
+
+| R5d.2xlarge | 20 | 320 tib | 368 tib 
+|===
+
+
+=== HA-Paare mit einer oder mehreren BYOL-Lizenzen
+
+[cols="10,18,18,18,18,18"]
+|===
+| Instanztyp | Max. Festplatten pro Node 2+| Maximale Systemkapazität mit einer Lizenz 2+| Maximale Systemkapazität mit mehreren Lizenzen 
+
+
+2+|  | *Festplatten allein* | *Festplatten + Daten-Tiering* | *Festplatten allein* | *Festplatten + Daten-Tiering* 
+
+
+| C4.4xlarge | 31 | 368 tib | 368 tib | 496 tib | 368 tib x jede Lizenz 
+
+
+| C4.8xlarge | 31 | 368 tib | 368 tib | 496 tib | 368 tib x jede Lizenz 
+
+
+| C5d.4xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+
+
+| C5d.9xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+
+
+| m4.xlarge | 31 | 368 tib | 368 tib | 496 tib | 368 tib x jede Lizenz 
+
+
+| M4.2xlarge | 31 | 368 tib | 368 tib | 496 tib | 368 tib x jede Lizenz 
+
+
+| M4.4xlarge | 31 | 368 tib | 368 tib | 496 tib | 368 tib x jede Lizenz 
+
+
+| m5.xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+
+
+| M5.2xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+
+
+| M5.4xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+
+
+| r4.xlarge | 31 | 368 tib | 368 tib | 496 tib | 368 tib x jede Lizenz 
+
+
+| R4.2xlarge | 31 | 368 tib | 368 tib | 496 tib | 368 tib x jede Lizenz 
+
+
+| r5.xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+
+
+| R5.2xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+
+
+| R5d.2xlarge | 20 | 320 tib | 368 tib | 320 tib | 368 tib x jede Lizenz 
+|===
+
+
+== Grenzwerte für Festplatte und Tiering nach Azure VM-Größe
+
+Die unten aufgeführten Festplattengrenzwerte gelten für Festplatten, die Benutzerdaten enthalten. Die Grenzen beinhalten nicht die Boot-Festplatte und Root-Festplatte. Die folgenden Tabellen zeigen die maximale Systemkapazität nach VM-Größe mit verwalteten Festplatten allein, mit Festplatten und Cold-Daten-Tiering in den Objekt-Storage.
+
+Festplattenbeschränkungen werden durch die VM-Größe nur für Premium- und BYOL-Lizenzen angezeigt, da aufgrund von Kapazitätsbeschränkungen bei Explore und Standard-Lizenzen keine Limits für Festplatten erreicht werden können.
+
+* Systeme mit einem Node können Standard-HDD-verwaltete Standardfestplatten, über Standard-SSD-verwaltete Festplatten und Premium-SSD-gemanagte Festplatten mit bis zu 32 tib pro Festplatte verwenden. Die Anzahl der unterstützten Festplatten variiert je nach VM-Größe.
+* HA-Systeme verwenden Premium-Blobs als Festplatten, mit bis zu 8 tib pro Seite BLOB. Die Anzahl der unterstützten Festplatten variiert je nach VM-Größe.
+
+
+
+
+=== Single Node mit Premium-Lizenz
+
+[cols="14,20,31,33"]
+|===
+| Die VM-Größe | Max. Festplatten pro Node | Maximale Systemkapazität mit Festplatten allein | Maximale Systemkapazität mit Festplatten und Daten-Tiering 
+
+
+| DS3_v2 | 15 | 368 tib | Tiering nicht unterstützt 
+
+
+| DS4_v2 | 31 | 368 tib | 368 tib 
+
+
+| DS5_v2 | 63 | 368 tib | 368 tib 
+
+
+| DS13_v2 | 31 | 368 tib | 368 tib 
+
+
+| DS14_v2 | 63 | 368 tib | 368 tib 
+|===
+
+
+=== Einzelner Node mit einer oder mehreren BYOL-Lizenzen
+
+
+NOTE: Bei einigen VM-Typen benötigen Sie mehrere BYOL-Lizenzen, um die unten aufgeführte maximale Systemkapazität zu erreichen. Beispielsweise würden Sie 6 BYOL-Lizenzen benötigen, um mit DS5_v2 2 PiB zu erreichen.
+
+[cols="10,18,18,18,18,18"]
+|===
+| Die VM-Größe | Max. Festplatten pro Node 2+| Maximale Systemkapazität mit einer Lizenz 2+| Maximale Systemkapazität mit mehreren Lizenzen 
+
+
+2+|  | *Festplatten allein* | *Festplatten + Daten-Tiering* | *Festplatten allein* | *Festplatten + Daten-Tiering* 
+
+
+| DS3_v2 | 15 | 368 tib | Tiering nicht unterstützt | 480 tib | Tiering nicht unterstützt 
+
+
+| DS4_v2 | 31 | 368 tib | 368 tib | 896 tib | 368 tib x jede Lizenz 
+
+
+| DS5_v2 | 63 | 368 tib | 368 tib | 896 tib | 368 tib x jede Lizenz 
+
+
+| DS13_v2 | 31 | 368 tib | 368 tib | 896 tib | 368 tib x jede Lizenz 
+
+
+| DS14_v2 | 63 | 368 tib | 368 tib | 896 tib | 368 tib x jede Lizenz 
+|===
+
+
+=== HA-Paare mit einer Premium-Lizenz
+
+[cols="14,20,31,33"]
+|===
+| Die VM-Größe | MAX Data-Festplatten für ein HA-Paar | Maximale Systemkapazität mit Festplatten allein | Maximale Systemkapazität mit Festplatten und Daten-Tiering 
+
+
+| DS4_v2 | 31 | 368 tib | Tiering nicht unterstützt 
+
+
+| DS5_v2 | 63 | 368 tib | Tiering nicht unterstützt 
+
+
+| DS13_v2 | 31 | 368 tib | Tiering nicht unterstützt 
+
+
+| DS14_v2 | 63 | 368 tib | Tiering nicht unterstützt 
+
+
+| DS15_v2 | 63 | 368 tib | Tiering nicht unterstützt 
+|===
+
+
+=== HA-Paare mit einer oder mehreren BYOL-Lizenzen
+
+
+NOTE: Bei einigen VM-Typen benötigen Sie mehrere BYOL-Lizenzen, um die unten aufgeführte maximale Systemkapazität zu erreichen. Beispielsweise würden Sie 3 BYOL-Lizenzen benötigen, um mit DS5_v2 1 PiB zu erreichen.
+
+[cols="10,18,18,18,18,18"]
+|===
+| Die VM-Größe | MAX Data-Festplatten für ein HA-Paar 2+| Maximale Systemkapazität mit einer Lizenz 2+| Maximale Systemkapazität mit mehreren Lizenzen 
+
+
+2+|  | *Festplatten allein* | *Festplatten + Daten-Tiering* | *Festplatten allein* | *Festplatten + Daten-Tiering* 
+
+
+| DS4_v2 | 31 | 368 tib | Tiering nicht unterstützt | 248 tib | Tiering nicht unterstützt 
+
+
+| DS5_v2 | 63 | 368 tib | Tiering nicht unterstützt | 504 tib | Tiering nicht unterstützt 
+
+
+| DS13_v2 | 31 | 368 tib | Tiering nicht unterstützt | 248 tib | Tiering nicht unterstützt 
+
+
+| DS14_v2 | 63 | 368 tib | Tiering nicht unterstützt | 504 tib | Tiering nicht unterstützt 
+
+
+| DS15_v2 | 63 | 368 tib | Tiering nicht unterstützt | 504 tib | Tiering nicht unterstützt 
+|===
+
+
+== Aggregatgrenzen in AWS
+
+Cloud Volumes ONTAP nutzt AWS Volumes als Festplatten und gruppiert diese in _Aggregate_. Aggregate stellen Storage auf Volumes zur Verfügung.
+
+[cols="2*"]
+|===
+| Parameter | Grenze 
+
+
+| Maximale Anzahl an Aggregaten | Single Node: Entspricht der Anzahl der HA-Paare auf der Festplatte: 18 in einem Node ^1^ 
+
+
+| Maximale Aggregatgröße | 96 tib Rohkapazität ^2^ 
+
+
+| Disks pro Aggregat | 1-6 ^3^ 
+
+
+| Maximale Anzahl von RAID-Gruppen pro Aggregat | 1 
+|===
+Hinweise:
+
+. Es ist nicht möglich, 18 Aggregate auf beiden Nodes in einem HA-Paar zu erstellen, da dadurch das Limit der Daten-Festplatten überschritten wird.
+. Die Kapazitätsgrenze für das Aggregat basiert auf den Festplatten, die das Aggregat umfassen. Die Obergrenze enthält keinen Objekt-Storage, der für Daten-Tiering verwendet wird.
+. Alle Festplatten in einem Aggregat müssen dieselbe Größe haben.
+
+
+
+
+== Aggregatgrenzen in Azure
+
+Cloud Volumes ONTAP nutzt Azure Storage als Festplatten und gruppiert diese in _Aggregate_. Aggregate stellen Storage auf Volumes zur Verfügung.
+
+[cols="2*"]
+|===
+| Parameter | Grenze 
+
+
+| Maximale Anzahl an Aggregaten | Entspricht der Festplattengrenze 
+
+
+| Maximale Aggregatgröße | 200 tib Rohkapazität für einzelnen Node ^1^ 96 tib Rohkapazität für HA-Paare ^1^ 
+
+
+| Disks pro Aggregat | 1-12 ^2^ 
+
+
+| Maximale Anzahl von RAID-Gruppen pro Aggregat | Single Node: 1 HA-Paare: 6 
+|===
+Hinweise:
+
+. Die Kapazitätsgrenze für das Aggregat basiert auf den Festplatten, die das Aggregat umfassen. Die Obergrenze enthält keinen Objekt-Storage, der für Daten-Tiering verwendet wird.
+. Alle Festplatten in einem Aggregat müssen dieselbe Größe haben.
+
+
+
+
+== Logische Storage-Einschränkungen
+
+[cols="22,22,56"]
+|===
+| Logischer Storage | Parameter | Grenze 
+
+
+| *Storage Virtual Machines (SVMs)* | Maximale Anzahl für Cloud Volumes ONTAP (HA-Paar oder Single Node) | Eine Datenservice-SVM und eine Ziel-SVM für die Disaster Recovery verwendet. Sie können die Ziel-SVM für den Datenzugriff aktivieren, wenn ein Ausfall auf der Quell-SVM auftritt. ^1^ die einheitliche SVM für Daten umfasst das gesamte Cloud Volumes ONTAP System (HA-Paar oder ein Node). 
+
+
+.2+| *Dateien* | Maximale Größe | 16 tib 
+
+
+| Maximale Anzahl pro Volume | Volumengröße abhängig, bis zu 2 Milliarden 
+
+
+| *FlexClone Volumes* | Hierarchische Klontiefe ^2^ | 499 
+
+
+.3+| *FlexVol Volumes* | Maximal pro Node | 500 
+
+
+| Mindestgröße | 20 MB 
+
+
+| Maximale Größe | AWS: Abhängig von der Größe des Aggregats ^3^ Azure HA: Abhängig von der Größe des Aggregats ^3^ Azure Einzel-Node: 100 tib 
+
+
+| *Qtrees* | Maximale Anzahl pro FlexVol Volume | 4,995 
+
+
+| *Snapshot Kopien* | Maximale Anzahl pro FlexVol Volume | 1,023 
+|===
+Hinweise:
+
+. Cloud Manager bietet keine Einrichtungs- oder Orchestrierungsunterstützung für SVM Disaster Recovery. Zudem werden für zusätzliche SVMs keine Storage-Aufgaben unterstützt. Sie müssen System Manager oder die CLI für die SVM-Disaster Recovery verwenden.
++
+** https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["Express Guide zur Vorbereitung des SVM-Disaster Recovery"^]
+** https://library.netapp.com/ecm/ecm_get_file/ECMLP2839857["SVM Disaster Recovery Express Guide"^]
+
+
+. Diese hierarchische Klontiefe ist die maximale Tiefe einer geschachtelten Hierarchie der FlexClone Volumes, die aus einem einzelnen FlexVol Volume erstellt werden kann.
+. Weniger als 100 tib wird unterstützt, da die Aggregate für diese Konfiguration auf 96 tib _RAW_ -Kapazität begrenzt sind.
+
+
+
+
+== ISCSI-Storage-Einschränkungen
+
+[cols="3*"]
+|===
+| ISCSI-Storage | Parameter | Grenze 
+
+
+.4+| *LUNs* | Maximal pro Node | 1,024 
+
+
+| Die maximale Anzahl der LUN-Zuordnungen | 1,024 
+
+
+| Maximale Größe | 16 tib 
+
+
+| Maximale Anzahl pro Volume | 512 
+
+
+| *Igroups* | Maximal pro Node | 256 
+
+
+.2+| *Initiatoren* | Maximal pro Node | 512 
+
+
+| Die maximale Anzahl pro Initiatorgruppe | 128 
+
+
+| *ISCSI-Sitzungen* | Maximal pro Node | 1,024 
+
+
+.2+| *LIFs* | Maximal pro Port | 32 
+
+
+| Maximal pro Portsatz | 32 
+
+
+| *Portsätze* | Maximal pro Node | 256 
+|===

@@ -1,0 +1,89 @@
+---
+settings:
+  name: Cloud Volumes ONTAP 9.5 release notes
+  platform: cloud
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  versions:
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-95-relnotes"
+    version-number: '9.5'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-relnotes"
+    version-number: 9.11.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9110-relnotes"
+    version-number: 9.11.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9101-relnotes"
+    version-number: 9.10.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-9100-relnotes"
+    version-number: 9.10.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-991-relnotes"
+    version-number: 9.9.1
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-990-relnotes"
+    version-number: 9.9.0
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-98-relnotes"
+    version-number: '9.8'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-97-relnotes"
+    version-number: '9.7'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-96-relnotes"
+    version-number: '9.6'
+  - name: Cloud Volumes ONTAP
+    url: "/cloud-volumes-ontap-94-relnotes"
+    version-number: '9.4'
+  - name: ONTAP Cloud
+    url: "/cloud-volumes-ontap-93-relnotes"
+    version-number: '9.3'
+  langs: de-de,us-en,ja-jp,zh-cn,zh-tw,ko-kr,fr-fr
+sidebar:
+  entries:
+  - title: Versionshinweise zu Hause
+    url: "/index.html"
+  - title: Was ist neu
+    url: "/reference-new.html"
+  - title: Unterstützte Konfigurationen
+    url: "/reference-supported-configs.html"
+  - title: Storage-Beschränkungen
+    url: "/reference-storage-limits.html"
+  - title: Bekannte Probleme
+    url: "/reference-issues.html"
+  - title: Bekannte Einschränkungen
+    url: "/reference-limitations.html"
+  - title: Rechtliche Hinweise
+    url: "/legal-notices.html"
+homepage:
+  tiles:
+  - title: Los geht's
+    links:
+    - title: Was ist neu
+      url: reference-new.html
+  - title: Konfigurationen und Einschränkungen
+    links:
+    - title: Unterstützte Konfigurationen
+      url: reference-supported-configs.html
+    - title: Storage-Beschränkungen
+      url: reference-storage-limits.html
+    - title: Einschränkungen
+      url: reference-limitations.html
+  - title: Blogs Community
+    links:
+    - title: NetApp Community
+      url: https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS
+    - title: Cloud Central Blog
+      url: https://cloud.netapp.com/blog
+    - title: Cloud-Webinare
+      url: https://cloud.netapp.com/events
+product-family:
+  name: Cloud Manager
+  repo: cloud-manager-family
+  sidebar_label: Alle Dokumentationen zum Cloud Manager
