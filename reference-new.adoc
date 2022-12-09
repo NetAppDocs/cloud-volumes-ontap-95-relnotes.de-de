@@ -196,7 +196,7 @@ Sie müssen NetApp Volume Encryption über die CLI einrichten. Die Verschlüssel
 https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-encrypting-volumes.html["Erfahren Sie, wie Sie NetApp Volume Encryption einrichten"^]
 
 
-NOTE: NetApp Volume Encryption ist eine andere Verschlüsselungstechnologie als die Cloud Volumes ONTAP-Verschlüsselung, die Daten auf Aggregatebene verschlüsselt und jetzt veraltet ist. Ein Upgrade zwischen diesen beiden Verschlüsselungstechnologien ist nicht möglich. Siehe  features in AWS Finden Sie weitere Informationen.
+NOTE: NetApp Volume Encryption ist eine andere Verschlüsselungstechnologie als die Cloud Volumes ONTAP-Verschlüsselung, die Daten auf Aggregatebene verschlüsselt und jetzt veraltet ist. Ein Upgrade zwischen diesen beiden Verschlüsselungstechnologien ist nicht möglich. Siehe <<Veraltete Funktionen in AWS>> Finden Sie weitere Informationen.
 
 
 
