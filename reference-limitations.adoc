@@ -112,7 +112,7 @@ Nach dem Neubooten eines Node muss der Partner die Daten synchronisieren, bevor 
 
 === Einschränkungen in der AWS C2S-Umgebung
 
-Sehen Sie sich in der Dokumentation zu Cloud Manager an unter Einschränkungen: https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-getting-started-aws-c2s.html["Erste Schritte in der AWS C2S Umgebung"^]
+Sehen Sie sich in der Dokumentation zu Cloud Manager an unter Einschränkungen: https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-getting-started-aws-c2s.html["Erste Schritte in der AWS C2S Umgebung"^]
 
 
 
