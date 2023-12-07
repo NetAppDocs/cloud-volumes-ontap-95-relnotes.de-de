@@ -62,28 +62,6 @@ sidebar:
     url: "/reference-limitations.html"
   - title: Rechtliche Hinweise
     url: "/legal-notices.html"
-homepage:
-  tiles:
-  - title: Los geht's
-    links:
-    - title: Was ist neu
-      url: reference-new.html
-  - title: Konfigurationen und Einschränkungen
-    links:
-    - title: Unterstützte Konfigurationen
-      url: reference-supported-configs.html
-    - title: Storage-Beschränkungen
-      url: reference-storage-limits.html
-    - title: Einschränkungen
-      url: reference-limitations.html
-  - title: Blogs Community
-    links:
-    - title: NetApp Community
-      url: https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS
-    - title: Cloud Central Blog
-      url: https://cloud.netapp.com/blog
-    - title: Cloud-Webinare
-      url: https://cloud.netapp.com/events
 product-family:
   name: BlueXP
   repo: bluexp-family
