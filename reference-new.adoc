@@ -104,7 +104,7 @@ NOTE: Cloud Volumes ONTAP unterstützt das Neustarten des Cache nicht, wenn ein 
 
 HA-Paare werden jetzt in der Region ZentralUS in Azure unterstützt.
 
-https://cloud.netapp.com/cloud-volumes-global-regions["Eine vollständige Liste der unterstützten Azure Regionen ist verfügbar"^].
+https://bluexp.netapp.com/cloud-volumes-global-regions["Eine vollständige Liste der unterstützten Azure Regionen ist verfügbar"^].
 
 
 
@@ -133,7 +133,7 @@ Die GA-Version ist in den meisten Azure-Regionen mit Ausnahme der folgenden verf
 
 Eine Wartung in diesen Regionen kann die Erstellung von Cloud Volumes ONTAP verhindern und Failover-Prozesse verhindern. Wir planen, diese Regionen zu unterstützen, sobald die Wartung abgeschlossen ist.
 
-https://cloud.netapp.com/cloud-volumes-global-regions["Eine vollständige Liste der unterstützten Azure Regionen ist verfügbar"^].
+https://bluexp.netapp.com/cloud-volumes-global-regions["Eine vollständige Liste der unterstützten Azure Regionen ist verfügbar"^].
 
 
 

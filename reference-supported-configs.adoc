@@ -82,7 +82,7 @@ Hinweise:
 . Wenn Sie einen EC2-Instanztyp auswählen, können Sie angeben, ob es sich um eine freigegebene Instanz oder eine dedizierte Instanz handelt.
 . Kalte HDDs werden nicht mit HA-Paaren unterstützt.
 . Bei Verwendung von EBS-SSDs mit Cloud Volumes ONTAP Standard, Premium und BYOL wird eine verbesserte Schreib-Performance ermöglicht.
-. Informationen zu regionalen Support für AWS finden Sie unter https://cloud.netapp.com/cloud-volumes-global-regions["Cloud Volumes Regionen Weltweit"^].
+. Informationen zur Unterstützung der AWS Region finden Sie unter https://bluexp.netapp.com/cloud-volumes-global-regions["Cloud Volumes Regionen Weltweit"^].
 
 
 
@@ -130,7 +130,7 @@ Hinweise:
 . Wenn Sie Data Tiering aktivieren, bleibt die Kapazitätsgrenze eines Systems gleich. Die Kapazitätsgrenze gilt sowohl für Festplatten als auch für Objekt-Storage.
 . Daten-Tiering wird nicht mit dem Typ der virtuellen DS3_v2-Maschine unterstützt.
 . Eine verbesserte Schreib-Performance ist bei Verwendung von Azure Premium Storage-Festplatten aktiviert, aber nicht bei Verwendung des Typs DS3_v2 Virtual Machine.
-. Informationen zur regionalen Unterstützung für Azure finden Sie unter https://cloud.netapp.com/cloud-volumes-global-regions["Cloud Volumes Regionen Weltweit"^].
+. Informationen zur Unterstützung von Azure-Regionen finden Sie unter https://bluexp.netapp.com/cloud-volumes-global-regions["Cloud Volumes Regionen Weltweit"^].
 
 
 
@@ -169,5 +169,5 @@ Bei der Implementierung von Cloud Volumes ONTAP als HA-Paar in Azure können Sie
 Hinweise:
 
 . Daten-Tiering wird nicht mit HA-Paaren unterstützt.
-. Informationen zur regionalen Unterstützung für Azure finden Sie unter https://cloud.netapp.com/cloud-volumes-global-regions["Cloud Volumes Regionen Weltweit"^].
+. Informationen zur Unterstützung von Azure-Regionen finden Sie unter https://bluexp.netapp.com/cloud-volumes-global-regions["Cloud Volumes Regionen Weltweit"^].
 
